@@ -26,7 +26,7 @@
          <c:if test="${!empty cus}">
          <h4 class="card-title">${cus.username}</h4>
          <p class="card-text">회원님 Welcome!</p>
-		 <form action="${cpath}/login/logoutProcess" method="post">
+		 <form action="${cpath}/logout" method="post">
 		  <button type="submit" class="btn btn-primary form-control">로그아웃</button>
 		 </form>
 		</c:if>

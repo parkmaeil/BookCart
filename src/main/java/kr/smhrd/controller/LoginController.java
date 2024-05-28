@@ -24,4 +24,9 @@ public class LoginController {
            // 다시 첫페이지로 이동(/list)
            return "redirect:/list";
     }
+    @PostMapping("/logout")
+    public String logout(HttpSession session){
+         session.invalidate();
+         return "redirect:/list";
+    }
 }

@@ -32,28 +32,43 @@
 		   <jsp:include page="left.jsp"/>
 		  </div>
 		  <div class="col-lg-7">
-		     <table class="table table-hover table-bordered">
-		        <thead>
-		          <tr>
-                      <th>번호</th>
-                      <th>제목</th>
-                      <th>가격</th>
-                      <th>저자</th>
-                      <th>페이지</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-                 <c:forEach var="book" items="${list}">
-		          <tr>
-                      <td>${book.id}</td>
-                      <td>${book.title}</td>
-                      <td>${book.price}</td>
-                      <td>${book.author}</td>
-                      <td>${book.page}</td>
-		          </tr>
-		          </c:forEach>
-		        </tbody>
-		     </table>
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Book List</h4>
+                <c:if test="${!empty cus}">
+                   <a href="#" class="card-link btn btn-sm btn-warning">My Cart(장바구니보기)</a>
+                </c:if>
+                <table class="table table-hover table-bordered">
+                		        <thead>
+                		          <tr>
+                                      <th>번호</th>
+                                      <th>제목</th>
+                                      <th>가격</th>
+                                      <th>저자</th>
+                                      <th>페이지</th>
+                                      <th>담기</th>
+                		          </tr>
+                		        </thead>
+                		        <tbody>
+                                 <c:forEach var="book" items="${list}">
+                		          <tr>
+                                      <td>${book.id}</td>
+                                      <td>${book.title}</td>
+                                      <td>${book.price}</td>
+                                      <td>${book.author}</td>
+                                      <td>${book.page}</td>
+                                      <c:if test="${empty cus}">
+                                        <td><button class="btn btn-sm btn-success" disabled>ADD</button></td>
+                                      </c:if>
+                                      <c:if test="${!empty cus}">
+                                        <td><button class="btn btn-sm btn-success">ADD</button></td>
+                                      </c:if>
+                		          </tr>
+                		          </c:forEach>
+                		        </tbody>
+                		     </table>
+              </div>
+            </div>
 		  </div>
 		  <div class="col-lg-3">
 		    <jsp:include page="right.jsp"/>
