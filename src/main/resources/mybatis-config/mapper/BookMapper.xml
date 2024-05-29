@@ -8,4 +8,9 @@
         select * from book order by id desc
     </select>
 
+    <insert id="cartAdd">
+        insert into cart(customer_id, book_id, quantity)
+        values(#{customer_id},#{book_id}, 1) <!-- 1, now() -->
+    </insert>
+
 </mapper>

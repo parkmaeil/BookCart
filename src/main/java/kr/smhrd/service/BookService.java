@@ -16,4 +16,8 @@ public class BookService {
     public List<Book> list(){
         return bookRepository.list();
     }
+
+    public void cartAdd(Long bookId, Long customerId){
+        bookRepository.cartAdd(bookId, customerId);
+    }
 }

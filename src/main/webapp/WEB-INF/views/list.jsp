@@ -14,6 +14,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+     function goCart(id){
+       // get 방식 , QueryString
+       // location.href="${cpath}/cartAdd?book_id="+id+"&customer_id="+${cus.id};
+       // post방식, form 이용
+       document.getElementById("bookId").value=id;
+       document.getElementById("frm").submit(); // 전송
+     }
+  </script>
 </head>
 <body>
 
@@ -38,7 +47,7 @@
                 <c:if test="${!empty cus}">
                    <a href="#" class="card-link btn btn-sm btn-warning">My Cart(장바구니보기)</a>
                 </c:if>
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered mt-3">
                 		        <thead>
                 		          <tr>
                                       <th>번호</th>
@@ -61,7 +70,7 @@
                                         <td><button class="btn btn-sm btn-success" disabled>ADD</button></td>
                                       </c:if>
                                       <c:if test="${!empty cus}">
-                                        <td><button class="btn btn-sm btn-success">ADD</button></td>
+                                        <td><button class="btn btn-sm btn-success" onclick="goCart(${book.id})">Add to Cart</button></td>
                                       </c:if>
                 		          </tr>
                 		          </c:forEach>
@@ -77,6 +86,9 @@
     </div>
     <div class="card-footer">빅데이터 플랫폼 개발자 과정_박매일</div>
   </div>
-
+  <form id="frm" method="post" action="${cpath}/cartAdd">
+      <input type="hidden" id="bookId" name="bookId"/>
+      <input type="hidden" id="customerId" name="customerId" value="${cus.id}"/>
+  </form>
 </body>
 </html>
