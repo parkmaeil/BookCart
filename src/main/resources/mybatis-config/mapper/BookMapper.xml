@@ -33,4 +33,8 @@
         where c.customer_id=#{customerId}
     </select>
 
+    <delete id="cartCancel">
+        delete from cart where id=#{cartId}
+    </delete>
+
 </mapper>

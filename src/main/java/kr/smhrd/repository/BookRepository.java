@@ -23,4 +23,6 @@ public interface BookRepository {
                              @Param("customer_id") Long customerId);
 
     public List<CartCusBook> cartList(Long customerId);
+
+    public void cartCancel(Long cartId);
 }

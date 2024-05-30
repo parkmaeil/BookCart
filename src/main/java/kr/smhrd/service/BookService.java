@@ -34,4 +34,9 @@ public class BookService {
     public List<CartCusBook> cartList(Long customerId){
         return bookRepository.cartList(customerId);
     }
+
+    public void cartCancel(Long cartId){
+        bookRepository.cartCancel(cartId);
+    }
+
 }

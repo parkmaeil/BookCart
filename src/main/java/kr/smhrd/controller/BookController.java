@@ -2,6 +2,7 @@ package kr.smhrd.controller;
 
 import kr.smhrd.entity.Book;
 import kr.smhrd.entity.CartCusBook;
+import kr.smhrd.entity.Customer;
 import kr.smhrd.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -38,6 +40,14 @@ public class BookController {
      List<CartCusBook> cartList=bookService.cartList(customerId);
        model.addAttribute("cartList", cartList);
      return "cartList"; // cartList.jsp
+   }
+
+   @GetMapping("/cartCancel/{cartId}")
+   public String cartCancel(@PathVariable Long cartId, HttpSession session){
+       bookService.cartCancel(cartId); // 삭제성공?
+       // 다시 장바구니 리스트보기 이동
+       Customer cus = (Customer) session.getAttribute("cus");
+       return "redirect:/cartList/"+cus.getId();
    }
 
 }

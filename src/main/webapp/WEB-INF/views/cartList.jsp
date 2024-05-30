@@ -22,6 +22,10 @@
        document.getElementById("bookId").value=id;
        document.getElementById("frm").submit(); // 전송
      }
+     function goCancel(id){
+       // get 방식, @PathVariable
+       location.href="${cpath}/cartCancel/"+id;
+     }
   </script>
 </head>
 <body>
@@ -47,25 +51,25 @@
                 <table class="table table-hover table-bordered mt-3">
                 		        <thead>
                 		          <tr>
-                                      <th>번호</th>
                                       <th>제목</th>
                                       <th>가격</th>
                                       <th>수량</th>
                                       <th>저자</th>
                                       <th>페이지</th>
                                       <th>금액</th>
+                                      <th>취소</th>
                 		          </tr>
                 		        </thead>
                 		        <tbody>
                                  <c:forEach var="cart" items="${cartList}">
                 		          <tr>
-                                      <td>${cart.id}</td>
                                       <td>${cart.title}</td>
                                       <td>${cart.price}</td>
                                       <td>${cart.quantity}</td>
                                       <td>${cart.author}</td>
                                       <td>${cart.page}</td>
                                       <td><span class="badge badge-danger">${cart.amount}</span></td>
+                		              <td><button class="btn btn-sm btn-secondary" onclick="goCancel(${cart.id})">Cancel</button></td>
                 		          </tr>
                 		          </c:forEach>
                 		        </tbody>
