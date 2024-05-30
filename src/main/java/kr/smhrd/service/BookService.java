@@ -46,4 +46,8 @@ public class BookService {
     public int totalAmount(Long customerId){
         return bookRepository.totalAmount(customerId); // 총액
     }
+
+    public int totalCount(Long customerId){
+        return bookRepository.totalCount(customerId);
+    }
 }

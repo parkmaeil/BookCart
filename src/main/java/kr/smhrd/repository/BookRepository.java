@@ -30,4 +30,6 @@ public interface BookRepository {
                                @Param("quantity") int quantity);
 
     public int totalAmount(Long customerId);
+
+    public int totalCount(Long customerId);
 }

@@ -50,4 +50,11 @@
         on c.book_id=b.id
         where c.customer_id=#{customerId}
     </select>
+
+    <select id="totalCount" resultType="int">
+        select
+        count(*) cnt
+        from cart c
+        where c.customer_id=#{customerId}
+    </select>
 </mapper>

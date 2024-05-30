@@ -15,6 +15,20 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+     if(${!empty cus}){
+       //alert("로그인됨"); // customerId-->3
+       fetch("http://localhost:8081/cart/api/cnt/"+${cus.id})
+       .then(function(resp){
+           return resp.text();// 3
+        })
+       .then(function(cnt){
+           document.getElementById("cnt").innerHTML=cnt;
+         })
+       .catch(function(error){
+          console.log("error"); // ?
+        });
+     }
+
      function goCart(id){
        // get 방식 , QueryString
        // location.href="${cpath}/cartAdd?book_id="+id+"&customer_id="+${cus.id};
@@ -45,7 +59,7 @@
               <div class="card-body">
                 <h4 class="card-title">Book List</h4>
                 <c:if test="${!empty cus}">
-                   <a href="${cpath}/cartList/${cus.id}" class="card-link btn btn-sm btn-warning">My Cart List<span class="badge badge-light">4</span></a>
+                   <a href="${cpath}/cartList/${cus.id}" class="card-link btn btn-sm btn-warning">My Cart List <span id="cnt" class="badge badge-light">4</span></a>
                 </c:if>
                 <table class="table table-hover table-bordered mt-3">
                 		        <thead>
