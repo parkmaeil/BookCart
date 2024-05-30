@@ -37,4 +37,17 @@
         delete from cart where id=#{cartId}
     </delete>
 
+    <update id="quantityUpdate">
+        update cart
+        set quantity=#{quantity}
+        where id=#{cartId}
+    </update>
+    <select id="totalAmount" resultType="int">
+        select
+        sum(c.quantity*b.price) totalamount
+        from cart c
+        inner join book b
+        on c.book_id=b.id
+        where c.customer_id=#{customerId}
+    </select>
 </mapper>

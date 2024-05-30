@@ -37,9 +37,12 @@ public class BookController {
 
    @GetMapping("/cartList/{customerId}")
    public String cartList(@PathVariable Long customerId, Model model){
-     List<CartCusBook> cartList=bookService.cartList(customerId);
+       List<CartCusBook> cartList=bookService.cartList(customerId);
        model.addAttribute("cartList", cartList);
-     return "cartList"; // cartList.jsp
+       // 총액
+       int totalAmount=bookService.totalAmount(customerId);
+       model.addAttribute("total", totalAmount);
+       return "cartList"; // cartList.jsp <-- ${total}
    }
 
    @GetMapping("/cartCancel/{cartId}")
@@ -50,4 +53,13 @@ public class BookController {
        return "redirect:/cartList/"+cus.getId();
    }
 
+   @GetMapping("/quantityUpdate/{cartId}/{quantity}")
+   public String quantityUpdate(@PathVariable Long cartId,
+                                 @PathVariable int quantity,
+                                 HttpSession session){
+       bookService.quantityUpdate(cartId, quantity); // 수량 수정후에
+       Customer cus = (Customer) session.getAttribute("cus");
+       return "redirect:/cartList/"+cus.getId();
+
+   }
 }

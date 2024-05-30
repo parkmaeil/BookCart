@@ -26,6 +26,12 @@
        // get 방식, @PathVariable
        location.href="${cpath}/cartCancel/"+id;
      }
+     function goQuantity(cartId){
+          let quantity=document.getElementById("quantity"+cartId).value;
+          //alert(quantity); // 수량수정 : $.ajax()
+          // /quantityUpdate/5/3
+          location.href="${cpath}/quantityUpdate/"+cartId+"/"+quantity;
+     }
   </script>
 </head>
 <body>
@@ -48,6 +54,9 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Cart List(${cus.username})</h4>
+                 <div class="row">
+                    <div class="col text-right"><button class="btn btn-sm btn-danger">주문하기</button></div>
+                 </div>
                 <table class="table table-hover table-bordered mt-3">
                 		        <thead>
                 		          <tr>
@@ -61,19 +70,28 @@
                 		          </tr>
                 		        </thead>
                 		        <tbody>
+                		         <c:set var="totalAmount" value="0" />
                                  <c:forEach var="cart" items="${cartList}">
                 		          <tr>
                                       <td>${cart.title}</td>
-                                      <td>${cart.price}</td>
-                                      <td>${cart.quantity}</td>
+                                      <td><fmt:formatNumber value="${cart.price}" pattern="#,###"/></td>
+                                      <td><input id="quantity${cart.id}" type="number" onchange="goQuantity(${cart.id})" value="${cart.quantity}" min="1" max="3" class="form-control"/></td>
                                       <td>${cart.author}</td>
                                       <td>${cart.page}</td>
-                                      <td><span class="badge badge-danger">${cart.amount}</span></td>
+                                      <td><h5><span class="badge badge-success"><fmt:formatNumber value="${cart.amount}" pattern="#,###"/></span></h5></td>
                 		              <td><button class="btn btn-sm btn-secondary" onclick="goCancel(${cart.id})">Cancel</button></td>
                 		          </tr>
+                		          <c:set var="totalAmount" value="${totalAmount + cart.amount}" />
                 		          </c:forEach>
+                		          <tr>
+                		            <td colspan="5" class="text-right">Total Amount</td>
+                		            <td colspan="2"><h4><span class="badge badge-pill badge-success"><fmt:formatNumber value="${total}" pattern="#,###"/></span></h4></td>
+                		          </tr>
                 		        </tbody>
                 		     </table>
+                             <div class="row">
+                                <div class="col text-right"><button onclick="location.href='${cpath}/list'" class="btn btn-sm btn-info">Continue Shopping</button></div>
+                             </div>
               </div>
             </div>
 		  </div>

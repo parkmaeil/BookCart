@@ -45,7 +45,7 @@
               <div class="card-body">
                 <h4 class="card-title">Book List</h4>
                 <c:if test="${!empty cus}">
-                   <a href="#" class="card-link btn btn-sm btn-warning">My Cart(장바구니보기)</a>
+                   <a href="${cpath}/cartList/${cus.id}" class="card-link btn btn-sm btn-warning">My Cart List<span class="badge badge-light">4</span></a>
                 </c:if>
                 <table class="table table-hover table-bordered mt-3">
                 		        <thead>

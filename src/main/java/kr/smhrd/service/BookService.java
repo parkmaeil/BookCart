@@ -39,4 +39,11 @@ public class BookService {
         bookRepository.cartCancel(cartId);
     }
 
+    public void quantityUpdate(Long cartId, int quantity){
+        bookRepository.quantityUpdate(cartId, quantity);
+    }
+
+    public int totalAmount(Long customerId){
+        return bookRepository.totalAmount(customerId); // 총액
+    }
 }
