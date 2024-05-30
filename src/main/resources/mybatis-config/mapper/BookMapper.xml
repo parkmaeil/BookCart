@@ -13,4 +13,24 @@
         values(#{customer_id},#{book_id}, 1) <!-- 1, now() -->
     </insert>
 
+    <select id="checkAdd" resultType="kr.smhrd.entity.Cart">
+        select * from cart
+        where customer_id=#{customer_id} and book_id=#{book_id}
+    </select>
+
+    <update id="cartQuantity">
+        update cart
+        set quantity=quantity+1
+        where customer_id=#{customer_id} and book_id=#{book_id}
+    </update>
+
+    <select id="cartList" resultType="kr.smhrd.entity.CartCusBook">
+        select c.id, c.customer_id, c.book_id, c.quantity,c.cart_date,
+        b.title,b.price,b.author,b.page, (c.quantity*b.price) amount
+        from cart c
+        inner join book b
+        on c.book_id=b.id
+        where c.customer_id=#{customerId}
+    </select>
+
 </mapper>

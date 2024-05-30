@@ -1,10 +1,9 @@
 package kr.smhrd.repository;
 
 import kr.smhrd.entity.Book;
-import org.apache.ibatis.annotations.Mapper;
+import kr.smhrd.entity.Cart;
+import kr.smhrd.entity.CartCusBook;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -17,4 +16,11 @@ public interface BookRepository {
     public void cartAdd(@Param("book_id") Long bookId,
                         @Param("customer_id") Long customerId);
 
+    public Cart checkAdd(@Param("book_id") Long bookId,
+                         @Param("customer_id") Long customerId);
+
+    public void cartQuantity(@Param("book_id") Long bookId,
+                             @Param("customer_id") Long customerId);
+
+    public List<CartCusBook> cartList(Long customerId);
 }
