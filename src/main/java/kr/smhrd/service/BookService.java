@@ -43,7 +43,7 @@ public class BookService {
         bookRepository.quantityUpdate(cartId, quantity);
     }
 
-    public int totalAmount(Long customerId){
+    public Integer totalAmount(Long customerId){
         return bookRepository.totalAmount(customerId); // 총액
     }
 

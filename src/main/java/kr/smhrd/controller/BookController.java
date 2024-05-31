@@ -40,7 +40,10 @@ public class BookController {
        List<CartCusBook> cartList=bookService.cartList(customerId);
        model.addAttribute("cartList", cartList);
        // 총액
-       int totalAmount=bookService.totalAmount(customerId);
+       int totalAmount=0;  // Integer->int : Unboxing
+       if(bookService.totalAmount(customerId)!=null) {
+           totalAmount = bookService.totalAmount(customerId);
+       }
        model.addAttribute("total", totalAmount);
        return "cartList"; // cartList.jsp <-- ${total}
    }
@@ -59,6 +62,8 @@ public class BookController {
                                  HttpSession session){
        bookService.quantityUpdate(cartId, quantity); // 수량 수정후에
        Customer cus = (Customer) session.getAttribute("cus");
+
+
        return "redirect:/cartList/"+cus.getId();
 
    }

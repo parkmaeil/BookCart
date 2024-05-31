@@ -17,7 +17,7 @@
   <script>
      if(${!empty cus}){
        //alert("로그인됨"); // customerId-->3
-       fetch("http://localhost:8081/cart/api/cnt/"+${cus.id})
+       fetch("http://localhost:8081/cart/api/cnt/"+"${cus.id}")
        .then(function(resp){
            return resp.text();// 3
         })

@@ -42,7 +42,7 @@
         set quantity=#{quantity}
         where id=#{cartId}
     </update>
-    <select id="totalAmount" resultType="int">
+    <select id="totalAmount" resultType="Integer">
         select
         sum(c.quantity*b.price) totalamount
         from cart c

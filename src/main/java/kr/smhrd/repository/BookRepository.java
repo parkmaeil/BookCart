@@ -29,7 +29,7 @@ public interface BookRepository {
     public void quantityUpdate(@Param("cartId") Long cartId,
                                @Param("quantity") int quantity);
 
-    public int totalAmount(Long customerId);
+    public Integer totalAmount(Long customerId);
 
     public int totalCount(Long customerId);
 }
